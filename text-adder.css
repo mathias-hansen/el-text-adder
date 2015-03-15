@@ -1,0 +1,52 @@
+:host {
+    position: fixed;
+    top: -31em;
+    width: 100%;
+    transition: .5s;
+    x-index: 3;
+}
+
+:host(.show) { top: 2em !important; }
+:host(.hide) { top: -31em !important; }
+
+:host > section {
+    border: 1px solid;
+    border-top: none;
+    position: relative;
+    top: -5px;
+    padding: .5em 1em;
+    width: {{image.width-34}}px; 
+}
+
+section section {
+    margin: .5em 0;
+}
+section section:nth-child(2) input { 
+    width: 30%; 
+    margin: 0 1em; 
+}
+
+section section, section article, section article input { width: 100%; }
+
+section article label { margin: 0 1em; }
+
+article:nth-child(2) label { transform: rotate(90deg); }
+
+input[type=color] { width: 40px !important; }
+
+button {
+    background: transparent;
+    border: none;
+}
+
+#text {
+    font-family: Arial;
+    position: absolute;
+    line-height: 1;
+    padding: 0;
+    margin: 0 0 0 {{outsidewidth}}px;
+    top: {{output.top}}px;
+    left: {{output.left}}px;
+    font-size: {{output.size}}px;
+    color: {{output.color}};           
+}

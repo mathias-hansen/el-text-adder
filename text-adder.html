@@ -1,0 +1,113 @@
+﻿<link rel="import" href="../../bower_components/core-icons/core-icons.html" />
+<link rel="import" href="../../bower_components/core-icon/core-icon.html" />
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+<polymer-element name="text-adder" 
+                 layout
+                 vertical 
+                 center 
+                 attributes="image output">
+
+    <template>
+
+        <link rel="stylesheet" href="text-adder.css">
+
+        <img src="/{{image.path}}"/>
+
+        <p id="text">{{output.text}}</p>
+
+        <section>
+            <section layout horizontal center>
+                <article layout horizontal center>
+                    <label>
+                        <core-icon alt="height" icon="unfold-more">
+                        </core-icon>
+                    </label>
+
+                    <input type="range" 
+                           min="0" 
+                           max="{{image.height}}" 
+                           value="{{output.top}}" 
+                           name="top"/>
+
+                </article>
+                <article layout horizontal center>
+
+                    <label>
+                        <core-icon alt="width" icon="unfold-more">
+                        </core-icon>
+                    </label>
+
+                    <input type="range" 
+                           min="0" 
+                           max="{{image.width}}" 
+                           value="{{output.left}}" 
+                           name="left"/>
+
+                </article>
+            </section>
+            <section layout horizontal center-justified>
+
+                <input type="range" 
+                       min="15" 
+                       max="200" 
+                       value="{{output.size}}" 
+                       name="size"/>
+
+                <input type="text" 
+                       value="{{output.text}}" 
+                       name="text"/>
+
+                <input type="color" 
+                       value="{{output.color}}" 
+                       name="color"/>
+
+            </section>
+            <section layout horizontal center>
+
+                <p id="status" flex>{{status}}</p>
+
+                <button on-tap="{{Toggle}}">
+                    <core-icon alt="save" icon="save">
+                    </core-icon>
+                </button>
+
+            </section>
+        </section>
+    </template>
+    <script>
+        (function() {
+            "use strict";
+        
+            Polymer({
+                image: {
+                    path: undefined,
+                    width: undefined,
+                    height: undefined
+                },
+                output: {
+                    text: "test",
+                    top: 0,
+                    left: 0,
+                    size: 15,
+                    color: "white"
+                },
+                outsidewidth: undefined,
+                ready: function () { this.outsidewidth = (window.innerWidth - this.image.width) / 2; },
+                Toggle: function() {
+
+                    if (this.getAttribute("hidden") !== null) this.removeAttribute("hidden");
+                    if (this.getAttribute("class") !== "hide") this.setAttribute("class", "hide");
+                    else  {
+
+                        var self = this;
+                        window.setTimeout(function() {
+                            self.setAttribute("class", "show");
+                        },1);
+
+                    }  
+
+                }
+            });
+        })();
+    </script>
+</polymer-element>
